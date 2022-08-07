@@ -35,13 +35,27 @@ def searchYoutube(query):
             'result':str(e)
         }              
 
-def getYoutubeFile(code):
+def getYoutubeFile(code,quality):
     video = pafy.new("https://www.youtube.com/watch?v="+code)
-    video.getbestaudio().download()
-    try:
-        return video.title+'.m4a'
-    except FileNotFoundError:
-        return video.title+'.ogg'
+    extension = None
+    if quality=='High':
+        video.getbestaudio().download()
+    else:
+        audiostreams = video.audiostreams
+        lowAudio = audiostreams[0]
+        for a in audiostreams:
+              if lowAudio.get_filesize()> a.get_filesize():
+                  lowAudio = a
+        print(lowAudio.get_filesize())  
+        extension = lowAudio.extension    
+        print(extension)    
+        lowAudio.download();          
+    if extension==None:
+        try:
+            return video.title+'.m4a'
+        except FileNotFoundError:
+            return video.title+'.ogg'
+    return video.title+'.'+extension    
     
 #Flask API 
 class SearchYoutube(Resource):
@@ -52,7 +66,8 @@ class SearchYoutube(Resource):
 class GetYTAudio(Resource):
     def post(self):
         code = request.form['code']
-        audio = getYoutubeFile(code)
+        quality = request.form['quality']
+        audio = getYoutubeFile(code,quality)
         return send_file(audio)
 
 app = Flask(__name__)

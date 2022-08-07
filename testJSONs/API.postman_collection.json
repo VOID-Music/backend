@@ -8,13 +8,29 @@
 	"item": [
 		{
 			"name": "Youtube Search",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
 			"request": {
 				"method": "GET",
 				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "query",
+							"value": "see you again",
+							"type": "text"
+						}
+					]
+				},
 				"url": {
-					"raw": "{[base_url]}",
+					"raw": "{{baseUrl}}/youtubeSearch",
 					"host": [
-						"{[base_url]}"
+						"{{baseUrl}}"
+					],
+					"path": [
+						"youtubeSearch"
 					]
 				}
 			},
@@ -31,6 +47,11 @@
 						{
 							"key": "code",
 							"value": "RgKAFK5djSk",
+							"type": "text"
+						},
+						{
+							"key": "quality",
+							"value": "Low",
 							"type": "text"
 						}
 					]
