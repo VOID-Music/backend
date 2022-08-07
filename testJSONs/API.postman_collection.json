@@ -1,0 +1,51 @@
+{
+	"info": {
+		"_postman_id": "97cf159a-d38a-4ac1-aca9-dd93bd7122e7",
+		"name": "VOID Music API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "16921522"
+	},
+	"item": [
+		{
+			"name": "Youtube Search",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{[base_url]}",
+					"host": [
+						"{[base_url]}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get YT Audio File",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "code",
+							"value": "RgKAFK5djSk",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{baseUrl}}/getYTAudio",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"getYTAudio"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
