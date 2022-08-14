@@ -1,0 +1,72 @@
+{
+	"info": {
+		"_postman_id": "97cf159a-d38a-4ac1-aca9-dd93bd7122e7",
+		"name": "VOID Music API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "16921522"
+	},
+	"item": [
+		{
+			"name": "Youtube Search",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "query",
+							"value": "see you again",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{baseUrl}}/youtubeSearch",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"youtubeSearch"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get YT Audio File",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "code",
+							"value": "RgKAFK5djSk",
+							"type": "text"
+						},
+						{
+							"key": "quality",
+							"value": "Low",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{baseUrl}}/getYTAudio",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"getYTAudio"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
