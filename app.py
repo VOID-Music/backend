@@ -1,7 +1,7 @@
 #If youtube-dl is taking too much space, remove it and enable internal backend from pafy kernal
 import pafy
 from youtubesearchpython import VideosSearch as Ysearch
-from flask import Flask,request,send_file
+from flask import Flask,request,send_file,make_response
 from flask_restful import  Api, Resource
 from flask_cors import CORS, cross_origin
 
@@ -60,8 +60,11 @@ def getYoutubeFile(code,quality):
 #Flask API 
 class SearchYoutube(Resource):
     def get(self):
+        response = make_response()
+        response.headers.add("Access-Control-Allow-Origin", "*")
         query = request.form['query']
         result = searchYoutube(query)
+        response.response= result
         return result
 class GetYTAudio(Resource):
     def post(self):
@@ -72,10 +75,13 @@ class GetYTAudio(Resource):
 
 class Test(Resource):
     def get(self):
-        return {
+        response = make_response()
+        response.headers.add("Access-Control-Allow-Origin", "*")
+        response.response =  {
             'status':'Succesful',
             'result':'The fetch was succesful',
         }
+        return response
 app = Flask(__name__)
 api = Api(app)
 cors = CORS(app)
