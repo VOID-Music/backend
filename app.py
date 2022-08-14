@@ -26,12 +26,12 @@ def searchYoutube(query):
             })
         print("Youtube Search Succesful")
         return {
-            'code':'Success',
+            'status':'Success',
             'result':formattedResults,
         }    
     except Exception as e:
         return {
-            'code':'Error',
+            'status':'Error',
             'result':str(e)
         }              
 
@@ -70,10 +70,17 @@ class GetYTAudio(Resource):
         audio = getYoutubeFile(code,quality)
         return send_file(audio)
 
+class Test(Resource):
+    def get(self):
+        return {
+            'status':'Succesful',
+            'result':'The fetch was succesful',
+        }
 app = Flask(__name__)
 api = Api(app)
 api.add_resource(SearchYoutube,'/youtubeSearch')
 api.add_resource(GetYTAudio,'/getYTAudio')
+api.add_resource(Test,'/')
 
 # print(searchYoutube('see you again song')) 
 # getYoutubeFile("RgKAFK5djSk")
