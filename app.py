@@ -3,7 +3,7 @@ import pafy
 from youtubesearchpython import VideosSearch as Ysearch
 from flask import Flask,request,send_file
 from flask_restful import  Api, Resource
-
+from flask_cors import CORS, cross_origin
 
 #API functions
 def searchYoutube(query): 
@@ -78,6 +78,8 @@ class Test(Resource):
         }
 app = Flask(__name__)
 api = Api(app)
+cors = CORS(app)
+app.config['CORS_HEADERS'] = 'Content-Type'
 api.add_resource(SearchYoutube,'/youtubeSearch')
 api.add_resource(GetYTAudio,'/getYTAudio')
 api.add_resource(Test,'/')
