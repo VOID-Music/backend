@@ -1,1 +1,1 @@
-web:gunicorn app:app
+web:gunicorn void-music-api.void-music-api.wsgi
