@@ -100,11 +100,6 @@ def Test():
             'status':'Succesful',
             'result':'The fetch was succesful',
         })
-    
-@app.route("/pusher-beams/auth/", methods=["GET"])
-def newTest():
-    return jsonify(request.headers['token'])
-    
 
 @app.route("/youtubeSearch/", methods=["GET"])
 @cross_origin()
